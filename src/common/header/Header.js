@@ -4,9 +4,9 @@ import React, { Component, Fragment } from 'react';
 import './Header.css';
 
 //Router import for redirection.
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import {Avatar, IconButton, Input, InputAdornment, Menu, MenuItem, Typography} from "@material-ui/core";
+import { Avatar, IconButton, Input, InputAdornment, Menu, MenuItem, Typography } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 /**
@@ -26,7 +26,7 @@ class Header extends Component {
 
     render() {
         if (this.state.loggedOut === true) {
-            return <Redirect to='/'/>
+            return <Redirect to='/' />
         }
         return <div className='header-flex-container'>
             {
@@ -40,20 +40,25 @@ class Header extends Component {
                             <header className='logo'>Image Viewer</header>
                         </div>
                         <div className='header-right-flex-container'>
-                            <Input className='search-box' type='search' placeholder='Search...' disableUnderline
-                                   startAdornment={
-                                    <InputAdornment position="start"><SearchIcon/></InputAdornment>
-                                }/>
-                        <IconButton id='profile-icon' onClick={this.onProfileIconClick}>
-                             <Avatar alt="profile_picture"
-                                     src={this.props.profilePictureUrl}/>
-                         </IconButton>
-                         <div>
+                            {
+                                this.props.showSearchBox ?
+                                    <Input className='search-box' type='search' placeholder='Search...' disableUnderline
+                                        startAdornment={
+                                            <InputAdornment position="start"><SearchIcon /></InputAdornment>
+                                        } onChange={this.props.onSearch} />
+                                    :
+                                    null
+                            }
+                            <IconButton id='profile-icon' onClick={this.onProfileIconClick}>
+                                <Avatar variant="circle" alt="profile_picture"
+                                    src={this.props.profilePictureUrl} />
+                            </IconButton>
+                            <div>
                                 <Menu open={this.state.menuState} onClose={this.onMenuClose}
-                                      anchorEl={this.state.anchorEl} getContentAnchorEl={null}
-                                      anchorOrigin={{vertical: "bottom", horizontal: "right"}} keepMounted>
-                                    <MenuItem><Typography>My Account</Typography></MenuItem>
-                                    <hr className='horizontal-line'/>
+                                    anchorEl={this.state.anchorEl} getContentAnchorEl={null}
+                                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }} keepMounted>
+                                    <MenuItem onClick={this.onMyAccount}><Typography>My Account</Typography></MenuItem>
+                                    <hr className='horizontal-line' />
                                     <MenuItem onClick={this.onLogout}><Typography>Logout</Typography></MenuItem>
                                 </Menu>
                             </div>
@@ -61,19 +66,23 @@ class Header extends Component {
                     </Fragment>
             }
         </div>
-            }
+    }
 
-            onLogout = () => {
-                sessionStorage.removeItem('access-token');
-                this.setState({loggedOut: true})
-            }
-            
-            onProfileIconClick = (e) => {
-                this.setState({'menuState': !this.state.menuState, 'anchorEl': e.currentTarget});
-            }
-        
-            onMenuClose = () => {
-                this.setState({'menuState': !this.state.menuState, 'anchorEl': null});
+    onMyAccount = () => {
+        this.props.history.push('/profile');
+    }
+    
+    onLogout = () => {
+        sessionStorage.removeItem('access-token');
+        this.setState({ loggedOut: true })
+    }
+
+    onProfileIconClick = (e) => {
+        this.setState({ 'menuState': !this.state.menuState, 'anchorEl': e.currentTarget });
+    }
+
+    onMenuClose = () => {
+        this.setState({ 'menuState': !this.state.menuState, 'anchorEl': null });
     }
 }
 
