@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     Box,
     Button,
@@ -49,7 +49,7 @@ class Login extends Component {
             return <Redirect to={{pathname: '/home', state: {loginSuccess: true}}}/>
         }
         return <div>
-            <div><Header /></div>
+            <div><Header/></div>
             <div className='login-card-flex-container'>
                 <Card className='login-card'>
                     <CardContent>
@@ -57,33 +57,42 @@ class Login extends Component {
                             <Typography variant="h5">
                                 <Box fontWeight='fontWeightBold'>
                                     LOGIN
-                            </Box>
+                                </Box>
                             </Typography>
                         </FormControl>
-                        <br />
-                        <br />
-                        <FormControl required className='login-form-control'>
-                            <InputLabel htmlFor='username'>Username</InputLabel>
-                           <Input id='username' name='username' type='text' onChange={this.onUsernameFieldChange}/>
-                            <FormHelperText className={this.state.usernameHelperTextDisplay}><span
-                                className='form-helper-text-red-color'>required</span></FormHelperText>
-                        </FormControl>
-                        <br />
-                        <br />
-                        <FormControl required className='login-form-control'>
-                            <InputLabel htmlFor='password'>Password</InputLabel>
-                            <Input id='password' name='password' type='password' onChange={this.onPasswordFieldChange}/>
-                            <FormHelperText className={this.state.passwordHelperTextDisplay}><span
-                                className='form-helper-text-red-color'>required</span></FormHelperText>
-                        </FormControl>
-                        <br />
-                        <br />
-                        <FormHelperText className={this.state.incorrectCredentialHelperTextDisplay}><span
-                            className='form-helper-text-red-color'>Incorrect username and/or password</span></FormHelperText>
                         <br/>
-                        <FormControl>
-                        <Button variant='contained' color='primary' onClick={this.onLogin}>Login</Button>
-                        </FormControl>
+                        <br/>
+                        <Typography>
+                            <FormControl required className='login-form-control'>
+                                <InputLabel htmlFor='username'>Username</InputLabel>
+                                <Input id='username' name='username' type='text' onChange={this.onUsernameFieldChange}/>
+                                <FormHelperText className={this.state.usernameHelperTextDisplay}><span
+                                    className='form-helper-text-red-color'>required</span></FormHelperText>
+                            </FormControl>
+                        </Typography>
+                        <br/>
+                        <br/>
+                        <Typography>
+                            <FormControl required className='login-form-control'>
+                                <InputLabel htmlFor='password'>Password</InputLabel>
+                                <Input id='password' name='password' type='password'
+                                       onChange={this.onPasswordFieldChange}/>
+                                <FormHelperText className={this.state.passwordHelperTextDisplay}><span
+                                    className='form-helper-text-red-color'>required</span></FormHelperText>
+                            </FormControl>
+                        </Typography>
+                        <br/>
+                        <br/>
+                        <Typography>
+                            <FormHelperText className={this.state.incorrectCredentialHelperTextDisplay}><span
+                                className='form-helper-text-red-color'>Incorrect username and/or password</span></FormHelperText>
+                        </Typography>
+                        <br/>
+                        <Typography>
+                            <FormControl>
+                                <Button variant='contained' color='primary' onClick={this.onLogin}>Login</Button>
+                            </FormControl>
+                        </Typography>
                     </CardContent>
                 </Card>
             </div>
@@ -135,6 +144,7 @@ class Login extends Component {
             }
         }
     }
+
 }
 
 export default Login;

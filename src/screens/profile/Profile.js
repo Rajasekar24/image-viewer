@@ -67,7 +67,7 @@ class Profile extends Component {
                 <Header {...this.props} isLoggedIn={true} showSearchBox={false}
                         profilePictureUrl={this.state.profile_picture} showMyAccount={false}/>
                 <Container>
-                    <div style={{height: "2rem"}}></div>
+                    <div style={{height: 32}}></div>
                     <Grid container spacing={3} justify="flex-start">
                         <Grid item xs={2}/>
                         <Grid item xs={2}>
@@ -137,7 +137,7 @@ class Profile extends Component {
                                     </FormControl>
                                     <div style={{marginTop: 15}}>
                                         <Button variant="contained" color="primary"
-                                                onClick={this.onUpdateFullName}>Update</Button>
+                                                onClick={this.onUpdateFullName}>UPDATE</Button>
                                     </div>
                                 </div>
                             </Modal>
@@ -147,7 +147,7 @@ class Profile extends Component {
                     </Grid>
                 </Container>
                 <Container>
-                    <Grid container spacing={1} direction="row" alignItems="center">
+                    <Grid container spacing={0} direction="row" alignItems="center">
                         {this.state.recent_media &&
                         this.state.recent_media.map((details, index) => (
                             <Grid
@@ -171,7 +171,7 @@ class Profile extends Component {
                                     {this.state.imageSelectedForDetails ? (
                                         <img alt={this.state.imageSelectedForDetails.images.id}
                                              src={this.state.imageSelectedForDetails.images.standard_resolution.url}
-                                             style={{height: "auto", maxWidth: "100%", overflow: 'hidden'}}/>
+                                             style={{height: "100%",width: "100%"}}/>
                                     ) : null}
                                 </Grid>
                                 <Grid item xs={6}>
@@ -179,7 +179,7 @@ class Profile extends Component {
                                             <div className='right-part'>
                                                 <div className='upper-part'>
                                                     <Grid className="user-detail-section" container spacing={1}
-                                                          direction="row">
+                                                          direction="row" style={{marginBottom:5}}>
                                                         <Grid item xs={2}>
                                                             <Avatar id='modal-profile-pic'
                                                                     alt={this.state.imageSelectedForDetails.user.full_name}
@@ -192,13 +192,13 @@ class Profile extends Component {
                                                             </Typography>
                                                         </Grid>
                                                     </Grid>
-                                                    <Divider/>
-                                                    <Typography>
+                                                    <Divider className='divider' variant="fullWidth"/>
+                                                    <Typography style={{marginTop:5}}>
                                                         {this.state.imageSelectedForDetails.caption.text.split("\n")[0]}
                                                     </Typography>
                                                     <Typography>
                                                         {this.state.imageSelectedForDetails.tags.map((tag, index) => (
-                                                            <span style={{color: "blue", fontSize: "14px"}}
+                                                            <span style={{color: "blue"}}
                                                                   key={index}>{'#' + tag + ' '}</span>
                                                         ))}
                                                     </Typography>
